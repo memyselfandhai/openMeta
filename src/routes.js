@@ -4,20 +4,20 @@ import React from "react";
 import TestCompContainer from "./containers/TestCompContainer";
 import About from "./components/About/About";
 import UserForm from "./components/Login/UserForm";
-import MasterDocument from "./components/Project/MasterDocument";
+import ProjectContainer from "./containers/ProjectContainer";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Landing from "./components/Landing/Landing.js";
 import Profile from "./components/Profile/Profile";
 import MyAnalyses from "./components/MyAnalyses/MyAnalyses";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 const Routes = () => {
   return (
     <Router>
       <div>
         <Route exact path="/" component={TestCompContainer} />
-        <Route exact path="/project" component={MasterDocument} />
+        <Route exact path="/project" component={ProjectContainer} />
         <Route exact path="/login" component={UserForm} />
         <Route exact path="/test" component={TestCompContainer} />
         <Route exact path="/about" component={About} />
