@@ -6,22 +6,36 @@ const bodyParser = require("body-parser");
 var jwt = require("jsonwebtoken");
 const app = express();
 
-// Setup logger
-
-app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
 //mongo-middleware
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 app.use((req, res, next) => {
+  console.log("mongo is fucking shit up");
   if (mongoose.connection.readyState) {
+    console.log("inside if");
     next();
   } else {
-    require('../mongo')().then(() => next());
+    console.log("inside ELSE");
+    require("../mongo")().then(() => next());
   }
 });
 
+// Setup logger
+
+app.use(
+  morgan(
+    ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'
+  )
+);
+
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   console.log("headers in app.js => ", res.header);
+//   next();
+// });
+
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 //json parser
 app.use(bodyParser.json());
 

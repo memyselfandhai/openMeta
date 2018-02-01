@@ -8,9 +8,9 @@ import ProjectContainer from "./containers/ProjectContainer";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Landing from "./components/Landing/Landing.js";
 import Profile from "./components/Profile/Profile";
-import MyAnalyses from "./components/MyAnalyses/MyAnalyses";
+import MyAnalysesContainer from "./containers/MyAnalysesContainer";
 
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const Routes = () => {
   return (
@@ -24,7 +24,7 @@ const Routes = () => {
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/landing" component={Landing} />
         <Route exact path="/profile" component={Profile} />
-        <Route exact path="/myanalyses" component={MyAnalyses} />
+        <Route exact path="/myanalyses" component={MyAnalysesContainer} />
       </div>
     </Router>
   );

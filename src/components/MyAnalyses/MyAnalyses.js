@@ -19,6 +19,7 @@ import johann from "../../assets/images/johann.jpeg";
 import Related from "./Related";
 import ModalForm from "./ModalForm";
 import Table from "../Profile/Table";
+const mongoose = require("mongoose");
 
 const analysisStyle = {
   width: "700px",
@@ -27,7 +28,13 @@ const analysisStyle = {
 };
 
 class MyAnalyses extends Component {
-  componentDidMount() {}
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.getAnalyses("*");
+  }
 
   render() {
     return (
