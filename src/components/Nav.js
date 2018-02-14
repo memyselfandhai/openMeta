@@ -93,7 +93,7 @@ class Nav extends Component {
                 </Dropdown.Item> */}
                 <Dropdown.Item>
                   <a href="/landing" style={{ color: "black" }}>
-                    Sign Out
+                    Sign In
                   </a>
                   {/* {this.props.Token ? (
                     <a href="/landing" style={{ color: "black" }}>
