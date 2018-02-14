@@ -115,7 +115,6 @@ class MyAnalysesPage extends Component {
                       {this.props.MyAnalysesPage.user.profile.organization}
                     </Header.Subheader>
                   </Header>
-
                   <br />
                 </Grid.Column>
               </Grid.Row>

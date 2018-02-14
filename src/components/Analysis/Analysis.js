@@ -1,6 +1,6 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Nav from "../Nav";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   Segment,
   Container,
@@ -10,7 +10,8 @@ import {
   Divider,
   Label,
   Table,
-  Icon
+  Icon,
+  Card
 } from "semantic-ui-react";
 const moment = require("moment");
 var _ = require("lodash");
@@ -27,7 +28,7 @@ class Analysis extends Component {
 
   render() {
     if (!this.props.isFetching) {
-      var {Analysis} = this.props;
+      var { Analysis } = this.props;
 
       // creating cards objects for card group
       // if (Analysis.data.inclusion.collectionId) {
@@ -69,13 +70,14 @@ class Analysis extends Component {
       });
 
       // creating iframes out of blocks
-      var blocks = Analysis.data.blocks.map(block => {
+      var blocks = Analysis.data.blocks.map((block, index) => {
         if (block.type === "graph") {
           console.log(" HIT! => ", block.content.outputLoc);
           return (
             <iframe
               src={`${block.content.outputLoc}`}
               title={`${block.content.outputLoc}`}
+              style={{ position: "relative" }}
             />
           );
         } else {
@@ -116,7 +118,7 @@ class Analysis extends Component {
                     ? Analysis.data.header.title
                     : "My Analysis"}{" "}
                   {this.props.Token.token ? (
-                    <span style={{fontSize: "16px"}}>
+                    <span style={{ fontSize: "16px" }}>
                       <NavLink to={`${Analysis._id}/edit`}>
                         <Icon name="edit" mini />
                       </NavLink>
