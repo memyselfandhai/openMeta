@@ -1,8 +1,5 @@
 import axios from "axios";
 import { store } from "../index.js";
-console.log("------------------- START store -------------------");
-console.log(store);
-console.log("-------------------- END store --------------------");
 
 // Remove a study
 export const REMOVE_STUDY = "REMOVE_STUDY";
@@ -50,15 +47,15 @@ const computeOcpuAndGetImg = async (rootUrl, data) => {
     }
   });
 
-  console.log("------------------- START postR.data -------------------");
-  console.log(postR.data);
-  console.log("-------------------- END postR.data --------------------");
+  // console.log("------------------- START postR.data -------------------");
+  // console.log(postR.data);
+  // console.log("-------------------- END postR.data --------------------");
 
   // Ocpu returns indented list of URLS; we split it here
   let resultArr = postR.data.split("\n");
   let graphicalOutput = resultArr.filter(url => url.match(/\.html/g));
   if (graphicalOutput.length < 1) {
-    graphicalOutput = resultArr.filter(url => url.match(/\graphics/g));
+    graphicalOutput = resultArr.filter(url => url.match(/graphics/g));
     return `https://cloud.opencpu.org${graphicalOutput}/png`;
   }
   return `https://cloud.opencpu.org${graphicalOutput}`;
@@ -84,8 +81,8 @@ export const updateSingleStudy = (moduleIdx, studyIdx, updateType) => {
         : removeStudy(moduleIdx, studyIdx)
     );
 
-    console.log("moduleIdx: ", moduleIdx);
-    let moduleContent = store.getState().project.blocks[moduleIdx].content;
+    // console.log("moduleIdx: ", moduleIdx);
+    let moduleContent = store.getState().AnalysisEditPage.blocks[moduleIdx].content;
     let rootUrl = `http://johnrpb.ocpu.io/openCPU_test/R/${moduleContent.name}`;
 
     // make request to Ocpu and fetch img url
@@ -95,7 +92,7 @@ export const updateSingleStudy = (moduleIdx, studyIdx, updateType) => {
       imgUrl = await computeOcpuAndGetImg(rootUrl, moduleContent.studies);
     } catch (e) {
       dispatch(getComputationError(moduleIdx));
-      console.log("Error with Ocpu request" + e);
+      // console.log("Error with Ocpu request" + e);
     }
 
     dispatch(updateLoc(moduleIdx, imgUrl));
@@ -104,21 +101,21 @@ export const updateSingleStudy = (moduleIdx, studyIdx, updateType) => {
 
 export const INITIAL_UPDATE = "INITIAL_UPDATE";
 export const initialUpdate = moduleIdx => {
-  console.log("getState: ", store.getState().project);
-  console.log("inside init update " , moduleIdx);
+  // console.log("getState: ", store.getState().AnalysisEditPage);
+  // console.log("inside init update " , moduleIdx);
   return async dispatch => {
-    let moduleContent = store.getState().project.blocks[moduleIdx].content;
+    let moduleContent = store.getState().AnalysisEditPage.blocks[moduleIdx].content;
     let rootUrl = `http://johnrpb.ocpu.io/openCPU_test/R/${moduleContent.name}`;
 
     // make request to Ocpu and fetch img url
     let imgUrl;
     try {
-      console.log("moduleIdx ---> ", moduleIdx);
+      // console.log("moduleIdx ---> ", moduleIdx);
       dispatch(getComputationStart(moduleIdx));
       imgUrl = await computeOcpuAndGetImg(rootUrl, moduleContent.studies);
     } catch (e) {
       dispatch(getComputationError(moduleIdx));
-      console.log("Error with Ocpu request" + e);
+      // console.log("Error with Ocpu request" + e);
     }
 
     dispatch(updateLoc(moduleIdx, imgUrl));

@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  NavLink,
-  Link,
-  Switch,
-} from 'react-router-dom'
+import React from 'react';
+// import {
+  // BrowserRouter as Router,
+  // Route,
+  // NavLink,
+  // Link,
+  // Switch,
+// } from 'react-router-dom'
 import {
   List,
 } from 'semantic-ui-react';
@@ -13,7 +13,7 @@ import StudyCheckboxContainer from "../../containers/Modules/StudyCheckboxContai
 
 const StudyInclusionBox = (props) => {
 
-  console.log("props: ", props);
+  // console.log("props: ", props);
   
 
   return (

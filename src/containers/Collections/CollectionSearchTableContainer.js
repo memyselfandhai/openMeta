@@ -1,17 +1,14 @@
 import { connect } from "react-redux";
 import { ceasePersist, changePage, persistTable } from '../../actions/collections';
-import { addCollection } from '../../actions/Dashboard';
-import CollectionSearchTable from '../../components/Collections/CollectionSearchTable';
+import { addCollection } from '../../actions/DashboardPage';
+import root from '../../lib/root';
+import CollectionSearchTable from '../../components/Pages/Collections/CollectionSearchTable';
 import serialize from "form-serialize";
 import axios from 'axios';
-const root =
-  process.env.NODE_ENV === "production"
-    ? "https://radiant-taiga-58264.herokuapp.com"
-    : "http://localhost:8000";
 
 
 const mapStateToProps = state => {
-  console.log(state);
+  // console.log(state);
   return{
     checkedStudy: state.collections.persistantTables,
     uncheckedStudy: state.collections.newTables,
@@ -34,11 +31,11 @@ const mapDispatchToProps = dispatch => {
       dispatch(changePage(data.activePage));
     },
     submit: (body) => {
-      console.log(body);
-      axios.post(`${root}/api/collections/new`, body)
+      // console.log(body);
+      axios.post(`${root()}/api/collections/new`, body)
         .then(response => {
           // dispatch(response.data);
-          console.log(response.data);
+          // console.log(response.data);
           dispatch(addCollection(response.data));
         })
         .catch(err => console.error(err));
@@ -47,7 +44,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
-  console.log(stateProps, dispatchProps, ownProps);
+  // console.log(stateProps, dispatchProps, ownProps);
   return {
     checkedStudy: stateProps.checkedStudy,
     uncheckedStudy: stateProps.uncheckedStudy,
@@ -60,7 +57,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
       let collectionNames = stateProps.user.collections.map(col => col.name);
       let form = e.target;
       const data = serialize(form, { hash: true });
-      console.log(data)
+      // console.log(data)
       if(!collectionNames.includes(data.collection.name)){
       let bodyObj = {
         name: data.collection.name,
@@ -70,7 +67,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
         hist: [],
         category: data.category
       }
-      console.log(bodyObj)
+      // console.log(bodyObj)
       dispatchProps.submit(bodyObj)
       }
     }

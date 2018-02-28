@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Routes from "./routes";
+// import Routes from "./routes";
+import RoutesContainer from "./RoutesContainer";
 
 import "./index.css";
 
@@ -20,7 +21,7 @@ export const store = createStore(rootReducer, enhancer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Routes />
+    <RoutesContainer />
   </Provider>,
   document.getElementById("root")
 );

@@ -1,13 +1,15 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { Container, Divider, Dimmer, Loader, Button } from "semantic-ui-react";
+import React from 'react';
+// import axios from "axios";
+import {
+  Container, 
+  Button
+} from 'semantic-ui-react';
 
-import PopupPanel from "./PopupPanel";
-import ControlPanel from "./ControlPanel";
+import PopupPanel from './PopupPanel';
+import ControlPanel from './ControlPanel';
 
-import OutputPanelContainer from "../../containers/Modules/OutputPanelContainer";
-import StudyInclusionBoxContainer from "../../containers/Modules/StudyInclusionBoxContainer";
-import DownloadButtonContainer from '../../containers/DashboardContainer';
+import OutputPanelContainer from '../../containers/Modules/OutputPanelContainer';
+import StudyInclusionBoxContainer from '../../containers/Modules/StudyInclusionBoxContainer';
 
 // ---------------------------------------------------------
 // Top-level Module
@@ -20,51 +22,25 @@ class Module extends React.Component {
   constructor(props) {
     super(props);
     this.props = props;
-    this.state = {
-      time: new Date().getTime()
-    }
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log("============================");
-    console.log(nextProps);
-    console.log("============================");
-  }
   componentDidMount() {
-    console.log("============================");
-    console.log("THIS COMPONENT HAS MOUNTED");
-    console.log("============================");
-    console.log(this.state.time);
     this.props.getOcpu();
   }
 
   componentDidUpdate(prevProps, prevState) {
-
-    console.log("------------------- START this.props.moduleIdx -------------------");
-    console.log(this.props.moduleIdx);
-    console.log("-------------------- END this.props.moduleIdx --------------------");
-    
-
     if (prevProps.moduleIdx !== this.props.moduleIdx) {
       this.props.getOcpu();
     }
   }
 
   componentWillReceiveProps(nextProps) {
-
-    console.log("-------------- Will receive props -----------------");
-    
-
     if (this.props.moduleIdx !== nextProps.moduleIdx) {
       this.props.getOcpu();
     }
   }
 
-
   render() {
-    console.log("------------------- START this.props.moduleIdx (render) -------------------");
-    console.log(this.props.moduleIdx);
-    console.log("-------------------- END this.props.moduleIdx --------------------");
 
     return (
       <Container>
@@ -74,7 +50,6 @@ class Module extends React.Component {
           </ControlPanel>
         </PopupPanel>
         <OutputPanelContainer moduleIdx={this.props.moduleIdx} />
-        <DownloadButtonContainer moduleIndex={this.props.moduleIdx} />
       </Container>
     );
   }

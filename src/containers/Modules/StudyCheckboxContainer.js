@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+// import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import StudyCheckbox from '../../components/Modules/StudyCheckbox.js';
@@ -6,7 +6,7 @@ import StudyCheckbox from '../../components/Modules/StudyCheckbox.js';
 // optional
 
 import * as Actions from '../../actions/modules.js';
-import {bindActionCreators} from 'redux';
+// import {bindActionCreators} from 'redux';
 
 //let StudyCheckboxContainer = () => {
 //return (
@@ -16,7 +16,7 @@ import {bindActionCreators} from 'redux';
 
 const mapStateToProps = (state, ownProps) => {
   let currentStudy =
-    state.project.blocks[ownProps.moduleIdx].content.studies[
+    state.AnalysisEditPage.blocks[ownProps.moduleIdx].content.studies[
       ownProps.studyIdx
     ];
 
@@ -31,9 +31,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleClick: async (e, data) => {
-      console.log("data: ", data);
-      console.log('e.target: ', e.target);
-      console.log('e.target.checked: ', e.target.checked);
+      // console.log("data: ", data);
+      // console.log('e.target: ', e.target);
+      // console.log('e.target.checked: ', e.target.checked);
 
       dispatch(
         Actions.updateSingleStudy(
