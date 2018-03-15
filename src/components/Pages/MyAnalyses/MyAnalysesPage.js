@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom';
+import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import {
   Segment,
   Header,
@@ -9,21 +9,20 @@ import {
   Card,
   Container,
   Dimmer,
-  Loader,
-} from 'semantic-ui-react';
-import NavContainer from '../../../containers/Navbar/NavContainer';
-import CollectionModal from './CollectionModal';
-import AnalysisModal from './AnalysisModal';
-import defaultpicture from '../../../assets/images/default.jpg';
-const faker = require('faker');
+  Loader
+} from "semantic-ui-react";
+import NavContainer from "../../../containers/Navbar/NavContainer";
+import CollectionModal from "./CollectionModal";
+import AnalysisModal from "./AnalysisModal";
+import defaultpicture from "../../../assets/images/default.jpg";
+const faker = require("faker");
 
 class MyAnalysesPage extends Component {
-
   componentWillMount() {
     if (!this.props._token) {
-      window.location.href = '/login';
+      window.location.href = "/login";
     }
-    if (!this.props.currentUser._id){
+    if (!this.props.currentUser._id) {
       this.isFetching = true;
     } else {
       this.props.getUser(this.props.currentUser._id);
@@ -32,7 +31,7 @@ class MyAnalysesPage extends Component {
 
   render() {
     let analysisCards;
-    if (this.props.currentUser._id && this.props.isFetching){
+    if (this.props.currentUser._id && this.props.isFetching) {
       this.props.stopFetch();
     }
     if (!this.props.isFetching) {
@@ -65,7 +64,7 @@ class MyAnalysesPage extends Component {
                 Title: {collection.name}
               </NavLink>
             ),
-            description: `Description: ${collection.description}`,
+            description: `Description: ${collection.description}`
           };
         });
     }
@@ -94,7 +93,7 @@ class MyAnalysesPage extends Component {
             <Grid>
               {/* header & sub-menu */}
               <Grid.Row>
-                {' '}
+                {" "}
                 <Grid.Column width={3} />
                 <Grid.Column width={3}>
                   <Image src={defaultpicture} circular size="small" />
@@ -107,8 +106,8 @@ class MyAnalysesPage extends Component {
                       this.props.currentUser.profile.lname
                     }`}
                     <Header.Subheader>
-                      {' '}
-                      {this.props.currentUser.profile.title} at{' '}
+                      {" "}
+                      {this.props.currentUser.profile.title} at{" "}
                       {this.props.currentUser.profile.organization}
                     </Header.Subheader>
                   </Header>
@@ -124,19 +123,21 @@ class MyAnalysesPage extends Component {
                 </Grid.Column>
                 <Grid.Column width={13}>
                   <Segment>
-                    {' '}
+                    {" "}
                     <Header as="h1" textalign="left">
                       Recent Collections
                     </Header>
                     <Divider />
                     <Card.Group
+                      id="collection_cards"
+                      className="hidden"
                       items={
                         collectionCards.length
                           ? collectionCards
                           : [
                               {
-                                description: 'No current collections',
-                              },
+                                description: "No current collections"
+                              }
                             ]
                       }
                       itemsPerRow={3}
@@ -145,6 +146,9 @@ class MyAnalysesPage extends Component {
                     <NavLink to="/collections">
                       <p>See all collections</p>
                     </NavLink>
+                    {/* <NavLink to="/collections">
+                      <p onClick={expandCollections}>See all collections</p>
+                    </NavLink> */}
                   </Segment>
                 </Grid.Column>
               </Grid.Row>
